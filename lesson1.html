@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/draggingWordsIntoSentence.css" />
+
+    <title>Перетаскивание слов в предложения</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3>
+        Таскалка - Перетаскивание слов в предложения c копированием слов ⬇
+      </h3>
+      <div class="border-container" id="task-1">
+        <div class="comparePicturesWrapper">
+          <div class="dropPlaceWrapper"></div>
+
+          <div class="dragPlaceWrapper"></div>
+        </div>
+        <div class="show-answer-controls show-answer-controls">
+          <button type="button" id="reset" class="resetButton resetBtn">
+            сброс ↻
+          </button>
+          <div class="show-answer-info show-answer-info"></div>
+          <button type="button" id="test" class="checkButton checkBtn">
+            проверить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS Scripts -->
+
+    <!-- Занятия -->
+    <script src="js-data/draggingWordsIntoSentence.js" type="module"></script>
+  </body>
+</html>
