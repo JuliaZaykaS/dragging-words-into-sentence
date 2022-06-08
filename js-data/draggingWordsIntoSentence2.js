@@ -94,8 +94,7 @@
     [...dropBox.children].forEach((item) => {
       [...item.children].forEach((elem) => {
         if (elem.children.length > 0) {
-          // elem.removeChild(elem.children[0]);
-          dragBox.appendChild(elem.children[0]);
+          elem.removeChild(elem.children[0]);
         }
       });
     });
@@ -207,7 +206,7 @@
       left: taskWrapper.offsetLeft,
     };
 
-    // draggingItem = draggingItem.cloneNode(true);
+    draggingItem = draggingItem.cloneNode(true);
     draggingItem.style.position = "absolute";
     draggingItem.style.zIndex = 1000;
     // document.body.appendChild(draggingItem);
@@ -252,12 +251,12 @@
         window.removeEventListener("pointerup", moveOut);
       }
 
-      // draggingItem.hidden = true;
+      //   draggingItem.hidden = true;
       draggingItem.style.visibility = "hidden";
       elemBelow = document.elementFromPoint(event.clientX, event.clientY);
       //   elemBelow = taskWrapper.elementFromPoint(event.clientX, event.clientY);
       draggingItem.style.visibility = "visible";
-      // draggingItem.hidden = false;
+      //   draggingItem.hidden = false;
 
       if (!elemBelow) return;
     }
@@ -266,9 +265,9 @@
     // КОГДА ВО ВРЕМЯ ПЕРЕТАСКИВАНИЯ КУРСОР ВЫНЕСЛИ ЗА ПРЕДЕЛЫ ОКНА БРАУЗЕРА И ОТПУСТИЛИ ЗАХВАТ ЭЛЕМЕНТА
     function moveOut(e) {
       // changeStylesAndAppend(dragBox, draggingItem);
-      dragAppend(dragBox, draggingItem, findIdx);
+      // dragAppend(dragBox, draggingItem, findIdx);
       //   document.body.removeChild(draggingItem);
-      // taskWrapper.removeChild(draggingItem);
+      taskWrapper.removeChild(draggingItem);
 
       window.removeEventListener("pointerup", moveOut);
       document.removeEventListener("pointermove", onMouseMove);
@@ -278,8 +277,7 @@
       draggingItem.style.cursor = "grab";
       if (clickWithoutMove) {
         // document.body.removeChild(draggingItem);
-        // taskWrapper.removeChild(draggingItem);
-        dragAppend(dragBox, draggingItem, findIdx);
+        taskWrapper.removeChild(draggingItem);
 
         return document.removeEventListener("pointermove", onMouseMove);
       }
@@ -290,7 +288,6 @@
       } else {
         // document.body.removeChild(draggingItem);
         taskWrapper.removeChild(draggingItem);
-        // dragAppend(dragBox, draggingItem, findIdx);
       }
     };
   }
