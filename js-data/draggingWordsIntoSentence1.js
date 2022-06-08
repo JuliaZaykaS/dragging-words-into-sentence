@@ -51,20 +51,25 @@
     },
   ];
 
-  const rightAnswer = "triangle";
-  const rightCount = 4;
   let draggingItem;
   let elemBelow;
 
-  const interakt_zadanie = document.getElementById("task-1");
-  const btnReset = document.querySelector(".resetBtn");
-  const btnTest = document.querySelector(".checkBtn");
-  const controlsBox = document.querySelector(".show-answer-controls");
-  const infoBox = document.querySelector(".show-answer-info");
+  //   const interakt_zadanie = document.getElementById("task-1");
+  const taskWrapper = document.getElementById("task-1");
+  //   const btnReset = document.querySelector(".resetBtn");
+  const btnReset = taskWrapper.querySelector(".resetBtn");
+  //   const btnTest = document.querySelector(".checkBtn");
+  const btnTest = taskWrapper.querySelector(".checkBtn");
+  //   const controlsBox = document.querySelector(".show-answer-controls");
+  const controlsBox = taskWrapper.querySelector(".show-answer-controls");
+  //   const infoBox = document.querySelector(".show-answer-info");
+  const infoBox = taskWrapper.querySelector(".show-answer-info");
 
-  const dropBox = document.querySelector(".dropPlaceWrapper");
+  //   const dropBox = document.querySelector(".dropPlaceWrapper");
+  const dropBox = taskWrapper.querySelector(".dropPlaceWrapper");
 
-  const dragBox = document.querySelector(".dragPlaceWrapper");
+  //   const dragBox = document.querySelector(".dragPlaceWrapper");
+  const dragBox = taskWrapper.querySelector(".dragPlaceWrapper");
 
   dropBox.insertAdjacentHTML(
     "beforeend",
@@ -81,28 +86,25 @@
   btnReset.addEventListener("click", onBtnResetClick);
   btnTest.addEventListener("click", onBtnTestClick);
 
-  dropBox.addEventListener("click", onDropBoxClick);
+  //   dropBox.addEventListener("click", onDropBoxClick);
 
-  function onDropBoxClick(event) {}
+  //   function onDropBoxClick(event) {}
 
   function onBtnResetClick() {
     [...dropBox.children].forEach((item) => {
-      //   console.log(item.children);
-      //   if (item.children.length > 0) {
       [...item.children].forEach((elem) => {
-        // console.log(elem);
         if (elem.children.length > 0) {
           elem.removeChild(elem.children[0]);
         }
       });
-      //   }
     });
 
     controlsBox.style = "";
     infoBox.textContent = "";
     draggingItem = null;
   }
-  const allSpans = document.querySelectorAll(".dropPlacePart");
+  //   const allSpans = document.querySelectorAll(".dropPlacePart");
+  const allSpans = taskWrapper.querySelectorAll(".dropPlacePart");
   //   console.log(
   //     "🚀 ~ file: draggingWordsIntoSentence.js ~ line 106 ~ allSpans",
   //     allSpans
@@ -113,7 +115,7 @@
 
     [...allSpans].forEach((el, index) => {
       if (
-        el.children[0].attributes
+        el.children[0]?.attributes
           .getNamedItem("drag-data")
           .value.includes(String(index + 1))
       ) {
@@ -191,17 +193,24 @@
 
     // ЛИММИТЫ КООРДИНАТ ОГРАНИЧИВАЮЩИЕ ВЫЛЕТ ПЕРЕТАСКИВАЕМОГО ЭЛЕМЕНТА ЗА БЛОК
     //  (ПО УМОЛЧАНИЮ interact_zadanie - РОДИТЕЛЬ ВАШЕГО БЛОКА)
+    // let limits = {
+    //   top: interakt_zadanie.offsetTop,
+    //   right: interakt_zadanie.offsetWidth + interakt_zadanie.offsetLeft,
+    //   bottom: interakt_zadanie.offsetHeight + interakt_zadanie.offsetTop,
+    //   left: interakt_zadanie.offsetLeft,
+    // };
     let limits = {
-      top: interakt_zadanie.offsetTop,
-      right: interakt_zadanie.offsetWidth + interakt_zadanie.offsetLeft,
-      bottom: interakt_zadanie.offsetHeight + interakt_zadanie.offsetTop,
-      left: interakt_zadanie.offsetLeft,
+      top: taskWrapper.offsetTop,
+      right: taskWrapper.offsetWidth + taskWrapper.offsetLeft,
+      bottom: taskWrapper.offsetHeight + taskWrapper.offsetTop,
+      left: taskWrapper.offsetLeft,
     };
 
     draggingItem = draggingItem.cloneNode(true);
     draggingItem.style.position = "absolute";
     draggingItem.style.zIndex = 1000;
-    document.body.appendChild(draggingItem);
+    // document.body.appendChild(draggingItem);
+    taskWrapper.appendChild(draggingItem);
 
     moveAt(event.pageX, event.pageY);
 
@@ -211,6 +220,7 @@
     }
 
     elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+    // elemBelow = taskWrapper.elementFromPoint(event.clientX, event.clientY);
     let clickWithoutMove = true;
     function onMouseMove(event) {
       let newLocation = {
@@ -244,6 +254,7 @@
       //   draggingItem.hidden = true;
       draggingItem.style.visibility = "hidden";
       elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+      //   elemBelow = taskWrapper.elementFromPoint(event.clientX, event.clientY);
       draggingItem.style.visibility = "visible";
       //   draggingItem.hidden = false;
 
@@ -255,7 +266,8 @@
     function moveOut(e) {
       // changeStylesAndAppend(dragBox, draggingItem);
       // dragAppend(dragBox, draggingItem, findIdx);
-      document.body.removeChild(draggingItem);
+      //   document.body.removeChild(draggingItem);
+      taskWrapper.removeChild(draggingItem);
 
       window.removeEventListener("pointerup", moveOut);
       document.removeEventListener("pointermove", onMouseMove);
@@ -264,7 +276,8 @@
     draggingItem.onpointerup = function () {
       draggingItem.style.cursor = "grab";
       if (clickWithoutMove) {
-        document.body.removeChild(draggingItem);
+        // document.body.removeChild(draggingItem);
+        taskWrapper.removeChild(draggingItem);
 
         return document.removeEventListener("pointermove", onMouseMove);
       }
@@ -273,7 +286,8 @@
       if (elemBelow.classList.contains("dropPlacePart")) {
         dropAppend(elemBelow, draggingItem);
       } else {
-        document.body.removeChild(draggingItem);
+        // document.body.removeChild(draggingItem);
+        taskWrapper.removeChild(draggingItem);
       }
     };
   }
