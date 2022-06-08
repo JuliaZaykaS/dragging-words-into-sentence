@@ -2,52 +2,93 @@
   const textForRender = [
     {
       id: 1,
-      text: "I have got a lot of <span class='dropPlacePart'></span>",
+      title: "Seva",
+      text: 'I go to school five days a week. I like school. We learn many things. I have four lessons on M<span class="dropPlacePart"></span>, W<span class="dropPlacePart" ></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.',
+      //   text: '<p>I go to school five days a week. I like school. We learn many things. I have four lessons on M<span class="dropPlacePart"></span>, W<span class="dropPlacePart" ></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.</p>',
       tag: "",
     },
     {
       id: 2,
-      text: "This is my <span class='dropPlacePart'></span>",
-      tag: "",
-    },
-    {
-      id: 3,
-      text: "It is  <span class='dropPlacePart'></span>",
-      tag: "",
-    },
-    {
-      id: 4,
-      //   text: "<p>I like to <span class=''></span> with my <span></span></p>",
-      text: "I like to <span class='dropPlacePart'></span> with my <span class='dropPlacePart'></span>",
+      title: "Polina",
+
+      //   text: '<p>I have school <span class="dropPlacePart"></span> days a week. I am a good student. I have five lessons on T<span class="dropPlacePart"></span>, Wednesdays and Thursdays. We count, write and learn <span class="dropPlacePart"></span>. On Mondays, F<span class="dropPlacePart"></span> and Saturdays I have four lessons. We read and learn French. We draw and do <span class="dropPlacePart"></span>on Wednesdays, Thursdays and S<span class="dropPlacePart"></span>. On Mondays, Tuesdays and Fridays we <span class="dropPlacePart"></span> and sing. On Sundays I <span class="dropPlacePart"></span> all day long.</p>',
+
+      text: 'I have school <span class="dropPlacePart"></span> days a week. I am a good student. I have five lessons on T<span class="dropPlacePart"></span>, Wednesdays and Thursdays. We count, write and learn <span class="dropPlacePart"></span>. On Mondays, F<span class="dropPlacePart"></span> and Saturdays I have four lessons. We read and learn French. We draw and do <span class="dropPlacePart"></span>on Wednesdays, Thursdays and S<span class="dropPlacePart"></span>. On Mondays, Tuesdays and Fridays we <span class="dropPlacePart"></span> and sing. On Sundays I <span class="dropPlacePart"></span> all day long.',
       tag: "",
     },
   ];
 
+  // <span class="dropPlacePart"></span>;
   const dragTextForRender = [
     {
       id: 1,
-      text: "toys",
-      tag: [1],
+      text: "ednesdays",
+      tag: [2],
     },
     {
       id: 2,
-      text: "car",
-      tag: [2, 5],
+      text: "books",
+      tag: [6],
     },
     {
       id: 3,
-      text: "red",
-      tag: [3],
+      text: "sports",
+      tag: [11],
     },
     {
       id: 4,
-      text: "play",
-      tag: [4],
+      text: "sleep",
+      tag: [14],
     },
     {
       id: 5,
-      text: "car",
-      tag: [2, 5],
+      text: "count",
+      tag: [3],
+    },
+    {
+      id: 6,
+      text: "hursdays",
+      tag: [4],
+    },
+    {
+      id: 7,
+      text: "ondays",
+      tag: [1],
+    },
+    {
+      id: 8,
+      text: "three",
+      tag: [5],
+    },
+    {
+      id: 9,
+      text: "aturdays",
+      tag: [12],
+    },
+    {
+      id: 10,
+      text: "six",
+      tag: [7],
+    },
+    {
+      id: 11,
+      text: "ridays",
+      tag: [10],
+    },
+    {
+      id: 12,
+      text: "dance",
+      tag: [13],
+    },
+    {
+      id: 13,
+      text: "uesdays",
+      tag: [8],
+    },
+    {
+      id: 14,
+      text: "English",
+      tag: [9],
     },
   ];
 
@@ -55,7 +96,7 @@
   let elemBelow;
 
   //   const interakt_zadanie = document.getElementById("task-1");
-  const taskWrapper = document.getElementById("task-1");
+  const taskWrapper = document.getElementById("task-3");
   //   const btnReset = document.querySelector(".resetBtn");
   const btnReset = taskWrapper.querySelector(".resetBtn");
   //   const btnTest = document.querySelector(".checkBtn");
@@ -82,6 +123,13 @@
     createDragPictureCardsMarkup(shuffleCards([...dragTextForRender]))
   );
 
+  //   const allSpans = document.querySelectorAll(".dropPlacePart");
+  const allSpans = taskWrapper.querySelectorAll(".dropPlacePart");
+  //   console.log(
+  //     "🚀 ~ file: draggingWordsIntoSentence.js ~ line 106 ~ allSpans",
+  //     allSpans
+  //   );
+
   dragBox.addEventListener("pointerdown", mouseDown);
   btnReset.addEventListener("click", onBtnResetClick);
   btnTest.addEventListener("click", onBtnTestClick);
@@ -93,10 +141,11 @@
   function onBtnResetClick() {
     [...dropBox.children].forEach((item) => {
       [...item.children].forEach((elem) => {
-        if (elem.children.length > 0) {
-          // elem.removeChild(elem.children[0]);
-          dragBox.appendChild(elem.children[0]);
-        }
+        [...elem.children].forEach((element) => {
+          if (element.children.length > 0) {
+            dragBox.appendChild(element.children[0]);
+          }
+        });
       });
     });
 
@@ -104,12 +153,6 @@
     infoBox.textContent = "";
     draggingItem = null;
   }
-  //   const allSpans = document.querySelectorAll(".dropPlacePart");
-  const allSpans = taskWrapper.querySelectorAll(".dropPlacePart");
-  //   console.log(
-  //     "🚀 ~ file: draggingWordsIntoSentence.js ~ line 106 ~ allSpans",
-  //     allSpans
-  //   );
 
   function onBtnTestClick() {
     let winCount = 0;
@@ -139,6 +182,11 @@
       .map((picture) => {
         // const imgSize =
         //   picture.tag === 'short' ? 'dragPicture_short' : '';
+        // return `
+        //             <span class='dragPlace' drag-data=${picture.tag}>
+        //            ${picture.text}
+        //             </span>
+        //                                   `;
         return `
                     <p class='dragPlace' drag-data=${picture.tag}>
                    ${picture.text}
@@ -150,10 +198,17 @@
   function createDropPictureCardsMarkup(pictures) {
     return pictures
       .map((picture) => {
-        return `<p class="dropPlace" drop-data=${picture.tag} >
+        // return `<div class="dropPlace" drop-data=${picture.tag} >
+        //   <h3 class="dropPlaceTitle">${picture.title}</h3>
 
-                    ${picture.text}
-                    </p>
+        //             ${picture.text}
+        //             </div>
+        //             `;
+        return `<div class="dropPlace" drop-data=${picture.tag} >
+        <h3 class="dropPlaceTitle">${picture.title}</h3>
+
+                    <p class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</p>
+                    </div>
                     `;
       })
       .join("");
@@ -175,13 +230,14 @@
     if (event.button !== 0) return;
     // console.log(event);
     if (
-      !event.target.classList.contains("dragPicture") &&
+      //   !event.target.classList.contains("dragPicture") &&
       !event.target.classList.contains("dragPlace")
     )
       return;
-    if (event.target.classList.contains("dragPicture")) {
-      draggingItem = event.target.parentElement;
-    } else draggingItem = event.target;
+    // if (event.target.classList.contains("dragPicture")) {
+    //   draggingItem = event.target.parentElement;
+    // } else
+    draggingItem = event.target;
     // находим индекс элемента, который берем в списке отрисованных. dragBox - контейнер для перетаскиваемых элементов
     const findIdx = [...dragBox.children].findIndex(
       (el) => el === draggingItem
@@ -287,6 +343,7 @@
       //   console.log(elemBelow);
       if (elemBelow.classList.contains("dropPlacePart")) {
         dropAppend(elemBelow, draggingItem);
+        // dropAppend(elemBelow.parentElement, draggingItem);
       } else {
         // document.body.removeChild(draggingItem);
         // taskWrapper.removeChild(draggingItem);
