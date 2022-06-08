@@ -2,52 +2,140 @@
   const textForRender = [
     {
       id: 1,
-      text: "I have got a lot of <span class='dropPlacePart'></span>",
-      tag: "",
+      text: "On Sunday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
     },
     {
       id: 2,
-      text: "This is my <span class='dropPlacePart'></span>",
-      tag: "",
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Sunday",
     },
     {
       id: 3,
-      text: "It is  <span class='dropPlacePart'></span>",
-      tag: "",
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Monday",
     },
     {
       id: 4,
       //   text: "<p>I like to <span class=''></span> with my <span></span></p>",
-      text: "I like to <span class='dropPlacePart'></span> with my <span class='dropPlacePart'></span>",
-      tag: "",
+      text: "On Monday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 5,
+      text: "On Tuesday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 6,
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Tuesday",
+    },
+    {
+      id: 7,
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Wednesday",
+    },
+    {
+      id: 8,
+      //   text: "<p>I like to <span class=''></span> with my <span></span></p>",
+      text: "On Wednesday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 9,
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Thursday",
+    },
+    {
+      id: 10,
+      text: "On Thursday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 11,
+      text: "On Friday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 12,
+      //   text: "<p>I like to <span class=''></span> with my <span></span></p>",
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> on Friday",
+    },
+    {
+      id: 13,
+      text: "On Saturday <span class='dropPlacePart'></span> <span class='dropPlacePart'></span>",
+    },
+    {
+      id: 14,
+      text: "<span class='dropPlacePart'></span> <span class='dropPlacePart'></span> 	on Saturday",
     },
   ];
 
   const dragTextForRender = [
     {
       id: 1,
-      text: "toys",
-      tag: [1],
+      text: "I",
+      tag: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27],
     },
     {
       id: 2,
-      text: "car",
-      tag: [2, 5],
+      text: "do homework",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
     },
     {
       id: 3,
-      text: "red",
-      tag: [3],
+      text: "do sports",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
     },
     {
       id: 4,
-      text: "play",
-      tag: [4],
+      text: "eat ice-cream",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
     },
     {
       id: 5,
-      text: "car",
-      tag: [2, 5],
+      text: "feed birds",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 6,
+      text: "go home",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 7,
+      text: "go to school",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 8,
+      text: "have fun",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 9,
+      text: "I have school",
+      tag: [0],
+    },
+    {
+      id: 10,
+      text: "learn English",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 11,
+      text: "meet friends",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 12,
+      text: "play computer games",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 13,
+      text: "read books",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 14,
+      text: "sleep all day long",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
+    },
+    {
+      id: 15,
+      text: "watch cartoons",
+      tag: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28],
     },
   ];
 
@@ -55,7 +143,7 @@
   let elemBelow;
 
   //   const interakt_zadanie = document.getElementById("task-1");
-  const taskWrapper = document.getElementById("task-1");
+  const taskWrapper = document.getElementById("task-2");
   //   const btnReset = document.querySelector(".resetBtn");
   const btnReset = taskWrapper.querySelector(".resetBtn");
   //   const btnTest = document.querySelector(".checkBtn");

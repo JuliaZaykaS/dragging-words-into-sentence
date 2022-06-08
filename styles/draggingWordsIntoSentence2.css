@@ -2,23 +2,26 @@
   user-select: none;
   width: 100%;
   /* height: 90%; */
-  height: 600px;
+  height: 800px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: row-reverse; */
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .dropPlaceWrapper {
   /* width: 700px; */
-  /* width: 100%; */
-  width: 90%;
-  height: 70%;
-  padding: 20px;
+  width: 100%;
+  /* height: ; */
+  /* width: 70%; */
+  /* height: 100%; */
+  /* padding: 20px; */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+
+  gap: 5px;
   box-sizing: border-box;
 
   /* flex-flow: row wrap; */
@@ -28,24 +31,29 @@
 }
 
 .dragPlaceWrapper {
+  /* width: 30%; */
   width: 100%;
-  height: 30%;
+  /* height: 100%; */
+  /* height: 100%; */
+  height: 150px;
   display: flex;
+  flex-wrap: wrap;
   /* justify-content: space-around; */
   /* justify-content: center; */
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   box-sizing: border-box;
+  /* gap: 5px; */
 }
 
 .dragPlace {
-  height: 50px;
-  width: 100px;
+  height: 40px;
+  width: 180px;
   /* width: 110px; */
   /* max-width: 130px; */
   border-radius: 12px;
-  font-size: 26px;
+  font-size: 18px;
   /* text-align: center; */
   display: flex;
   justify-content: center;
@@ -67,10 +75,12 @@
   /* height: 90%; */
   /* box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4; */
   border-radius: 12px;
-  font-size: 26px;
+  font-size: 18px;
 
   display: flex;
-  align-items: flex-end;
+  /* align-items: flex-end; */
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   /* justify-content: flex-end; */
   box-sizing: border-box;
@@ -78,17 +88,52 @@
 
 .dropPlacePart {
   display: inline-block;
-  width: 100px;
-  height: 50px;
+  width: 180px;
+  height: 40px;
   border: 1px solid blue;
   border-radius: 12px;
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 1370px) {
-  .dropPlace {
+  .comparePicturesWrapper {
+    width: 100%;
+
+    height: 800px;
+
+    flex-direction: row-reverse;
+  }
+
+  .dropPlaceWrapper {
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    /* align-self: center; */
+  }
+
+  .dragPlaceWrapper {
+    width: 30%;
+    /* width: 100%; */
+    /* height: 100%; */
+    height: 100%;
   }
 
   .dragPlace {
+    height: 40px;
+    width: 120px;
+    text-align: center;
+
+    font-size: 15px;
+  }
+
+  .dropPlace {
+    font-size: 15px;
+
+    gap: 10px;
+  }
+
+  .dropPlacePart {
+    width: 120px;
+    height: 40px;
   }
 }
