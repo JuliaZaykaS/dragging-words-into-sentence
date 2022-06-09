@@ -1,9 +1,12 @@
 (() => {
+  // <span class="dropPlacePart"></span> - где нужно пустое место
+  // <span></span> - если длинная строка
   const textForRender = [
     {
       id: 1,
       title: "Seva",
-      text: 'I go to school five days a week. I like school. We learn many things. I have four lessons on M<span class="dropPlacePart"></span>, W<span class="dropPlacePart" ></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.',
+      // text: 'I go to school five days a week. I like school. We learn many things. <span></span>I have four lessons on M <span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.',
+      text: '<span>I go to school five days a week.</span> <span>I like school.</span> <span>We learn many things.</span><span>I have four lessons on M </span><span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays.We read, <span class="dropPlacePart"></span> and write every day.On Tuesdays and T<span class="dropPlacePart"></span> <span>I have five lessons.</span><span> We learn English and sing.</span> We do sports <span class="dropPlacePart"></span> days a week. <span>On Saturdays and Sundays I read </span><span class="dropPlacePart" ></span> and play games.',
       //   text: '<p>I go to school five days a week. I like school. We learn many things. I have four lessons on M<span class="dropPlacePart"></span>, W<span class="dropPlacePart" ></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.</p>',
       tag: "",
     },
@@ -13,7 +16,7 @@
 
       //   text: '<p>I have school <span class="dropPlacePart"></span> days a week. I am a good student. I have five lessons on T<span class="dropPlacePart"></span>, Wednesdays and Thursdays. We count, write and learn <span class="dropPlacePart"></span>. On Mondays, F<span class="dropPlacePart"></span> and Saturdays I have four lessons. We read and learn French. We draw and do <span class="dropPlacePart"></span>on Wednesdays, Thursdays and S<span class="dropPlacePart"></span>. On Mondays, Tuesdays and Fridays we <span class="dropPlacePart"></span> and sing. On Sundays I <span class="dropPlacePart"></span> all day long.</p>',
 
-      text: 'I have school <span class="dropPlacePart"></span> days a week. I am a good student. I have five lessons on T<span class="dropPlacePart"></span>, Wednesdays and Thursdays. We count, write and learn <span class="dropPlacePart"></span>. On Mondays, F<span class="dropPlacePart"></span> and Saturdays I have four lessons. We read and learn French. We draw and do <span class="dropPlacePart"></span>on Wednesdays, Thursdays and S<span class="dropPlacePart"></span>. On Mondays, Tuesdays and Fridays we <span class="dropPlacePart"></span> and sing. On Sundays I <span class="dropPlacePart"></span> all day long.',
+      text: 'I have school <span class="dropPlacePart"></span> days a week. I am a good student. I have five lessons on T<span class="dropPlacePart"></span>, Wednesdays and Thursdays. We count, write and learn <span class="dropPlacePart"></span>. On Mondays, F<span class="dropPlacePart"></span> and Saturdays I have four lessons. <span></span> We read and learn French. We draw and do <span class="dropPlacePart"></span>on Wednesdays, Thursdays and S<span class="dropPlacePart"></span>. On Mondays, Tuesdays and Fridays we <span class="dropPlacePart"></span> and sing. On Sundays I <span class="dropPlacePart"></span> all day long.',
       tag: "",
     },
   ];
@@ -182,16 +185,16 @@
       .map((picture) => {
         // const imgSize =
         //   picture.tag === 'short' ? 'dragPicture_short' : '';
-        // return `
-        //             <span class='dragPlace' drag-data=${picture.tag}>
-        //            ${picture.text}
-        //             </span>
-        //                                   `;
         return `
-                    <p class='dragPlace' drag-data=${picture.tag}>
+                    <span class='dragPlace' drag-data=${picture.tag}>
                    ${picture.text}
-                    </p>
+                    </span>
                                           `;
+        // return `
+        //             <p class='dragPlace' drag-data=${picture.tag}>
+        //            ${picture.text}
+        //             </p>
+        //                                   `;
       })
       .join("");
   }
@@ -207,9 +210,10 @@
         return `<div class="dropPlace" drop-data=${picture.tag} >
         <h3 class="dropPlaceTitle">${picture.title}</h3>
 
-                    <p class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</p>
-                    </div>
-                    `;
+        <p class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</p>
+        </div>
+        `;
+        // <div class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</div>
       })
       .join("");
   }
