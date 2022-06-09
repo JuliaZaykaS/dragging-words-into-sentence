@@ -6,7 +6,8 @@
       id: 1,
       title: "Seva",
       // text: 'I go to school five days a week. I like school. We learn many things. <span></span>I have four lessons on M <span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.',
-      text: '<span>I go to school five days a week.</span> <span>I like school.</span> <span>We learn many things.</span><span>I have four lessons on M </span><span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays.We read, <span class="dropPlacePart"></span> and write every day.On Tuesdays and T<span class="dropPlacePart"></span> <span>I have five lessons.</span><span> We learn English and sing.</span> We do sports <span class="dropPlacePart"></span> days a week. <span>On Saturdays and Sundays I read </span><span class="dropPlacePart" ></span> and play games.',
+      text: 'I go to school five days a week. I like school. We learn many things. I have four lessons on M <span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart"></span> and play games.',
+      // text: '<span>I go to school five days a week.</span> <span>I like school.</span> <span>We learn many things.</span><span>I have four lessons on M </span><span class="dropPlacePart"></span>, W <span class="dropPlacePart"></span> and Fridays.We read, <span class="dropPlacePart"></span> and write every day.On Tuesdays and T<span class="dropPlacePart"></span> <span>I have five lessons.</span><span> We learn English and sing.</span> We do sports <span class="dropPlacePart"></span> days a week. <span>On Saturdays and Sundays I read </span><span class="dropPlacePart" ></span> and play games.',
       //   text: '<p>I go to school five days a week. I like school. We learn many things. I have four lessons on M<span class="dropPlacePart"></span>, W<span class="dropPlacePart" ></span> and Fridays. We read, <span class="dropPlacePart"></span> and write every day. On Tuesdays and T<span class="dropPlacePart"></span> I have five lessons. We learn English and sing. We do sports <span class="dropPlacePart"></span> days a week. On Saturdays and Sundays I read <span class="dropPlacePart" ></span> and play games.</p>',
       tag: "",
     },
@@ -201,6 +202,35 @@
   function createDropPictureCardsMarkup(pictures) {
     return pictures
       .map((picture) => {
+        // console.log(picture.text.split(" "));
+        // console.log(picture.text.split('<span class="dropPlacePart"></span>'));
+        // const modifiedString = picture.text.split(
+        //   '<span class="dropPlacePart"></span>'
+        // );
+        // const newArr = modifiedString.map((el) => {
+        //   if (el.length > 50) {
+        //     // return el.split(" ", 50 / 2);
+        //     return el.split(".");
+        //   } else return el;
+        // });
+        // console.log(newArr);
+        // console.log(newArr.flat(1));
+        // const finishStr = modifiedString
+        //   // .map((el) => `<span>${el}</span>`)
+        //   .map((el) => {
+        //     console.log(el.length);
+        //     if (el.length > 50) {
+        //       return `<span>${el.slice(0, 50)}</span><span>${el.slice(
+        //         50,
+        //         el.length - 1
+        //       )}</span>`;
+        //     } else return `<span>${el}</span>`;
+        //   })
+        //   // const finishStr = newArr
+        //   //   // .flat(1)
+        //   //   .map((el) => `<span>${el}</span>`)
+        //   .join('<span class="dropPlacePart"></span>');
+        // console.log(finishStr);
         // return `<div class="dropPlace" drop-data=${picture.tag} >
         //   <h3 class="dropPlaceTitle">${picture.title}</h3>
 
@@ -213,6 +243,7 @@
         <p class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</p>
         </div>
         `;
+        // <p class="dropPlaceText" drag-data=${picture.tag}>${finishStr}</p>
         // <div class="dropPlaceText" drag-data=${picture.tag}>${picture.text}</div>
       })
       .join("");

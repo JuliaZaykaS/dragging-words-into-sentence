@@ -109,7 +109,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  line-break: loose;
+  /* line-break: loose; */
   /* overflow-wrap: break-word; */
   /* justify-content: space-evenly; */
   /* justify-content: center; */
@@ -118,7 +118,8 @@
   /* margin-left: 30px; */
 }
 /* .dropPlaceText span {
-  display: inline-block;
+  margin-left: 2px;
+  margin-right: 2px;
 } */
 
 .dropPlacePart {

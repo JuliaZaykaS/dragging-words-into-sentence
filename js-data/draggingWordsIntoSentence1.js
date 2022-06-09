@@ -175,13 +175,14 @@
     if (event.button !== 0) return;
     // console.log(event);
     if (
-      !event.target.classList.contains("dragPicture") &&
+      // !event.target.classList.contains("dragPicture") &&
       !event.target.classList.contains("dragPlace")
     )
       return;
-    if (event.target.classList.contains("dragPicture")) {
-      draggingItem = event.target.parentElement;
-    } else draggingItem = event.target;
+    // if (event.target.classList.contains("dragPicture")) {
+    //   draggingItem = event.target.parentElement;
+    // } else draggingItem = event.target;
+    draggingItem = event.target;
     // находим индекс элемента, который берем в списке отрисованных. dragBox - контейнер для перетаскиваемых элементов
     const findIdx = [...dragBox.children].findIndex(
       (el) => el === draggingItem
