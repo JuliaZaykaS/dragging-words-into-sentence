@@ -142,41 +142,32 @@
   let draggingItem;
   let elemBelow;
 
-  //   const interakt_zadanie = document.getElementById("task-1");
   const taskWrapper = document.getElementById("task-2");
-  //   const btnReset = document.querySelector(".resetBtn");
+
   const btnReset = taskWrapper.querySelector(".resetBtn");
-  //   const btnTest = document.querySelector(".checkBtn");
+
   const btnTest = taskWrapper.querySelector(".checkBtn");
-  //   const controlsBox = document.querySelector(".show-answer-controls");
+
   const controlsBox = taskWrapper.querySelector(".show-answer-controls");
-  //   const infoBox = document.querySelector(".show-answer-info");
+
   const infoBox = taskWrapper.querySelector(".show-answer-info");
 
-  //   const dropBox = document.querySelector(".dropPlaceWrapper");
   const dropBox = taskWrapper.querySelector(".dropPlaceWrapper");
 
-  //   const dragBox = document.querySelector(".dragPlaceWrapper");
   const dragBox = taskWrapper.querySelector(".dragPlaceWrapper");
 
   dropBox.insertAdjacentHTML(
     "beforeend",
-    // createDragPictureCardsMarkup(imagesForRender),
     createDropPictureCardsMarkup(textForRender)
   );
   dragBox.insertAdjacentHTML(
     "beforeend",
-    // createDragPictureCardsMarkup(imagesForRender),
     createDragPictureCardsMarkup(shuffleCards([...dragTextForRender]))
   );
 
   dragBox.addEventListener("pointerdown", mouseDown);
   btnReset.addEventListener("click", onBtnResetClick);
   btnTest.addEventListener("click", onBtnTestClick);
-
-  //   dropBox.addEventListener("click", onDropBoxClick);
-
-  //   function onDropBoxClick(event) {}
 
   function onBtnResetClick() {
     [...dropBox.children].forEach((item) => {
@@ -191,12 +182,8 @@
     infoBox.textContent = "";
     draggingItem = null;
   }
-  //   const allSpans = document.querySelectorAll(".dropPlacePart");
+
   const allSpans = taskWrapper.querySelectorAll(".dropPlacePart");
-  //   console.log(
-  //     "🚀 ~ file: draggingWordsIntoSentence.js ~ line 106 ~ allSpans",
-  //     allSpans
-  //   );
 
   function onBtnTestClick() {
     let winCount = 0;
@@ -224,8 +211,6 @@
   function createDragPictureCardsMarkup(pictures) {
     return pictures
       .map((picture) => {
-        // const imgSize =
-        //   picture.tag === 'short' ? 'dragPicture_short' : '';
         return `
                     <p class='dragPlace' drag-data=${picture.tag}>
                    ${picture.text}
@@ -260,20 +245,9 @@
 
   function mouseDown(event) {
     if (event.button !== 0) return;
-    // console.log(event);
-    if (
-      // !event.target.classList.contains("dragPicture") &&
-      !event.target.classList.contains("dragPlace")
-    )
-      return;
+
+    if (!event.target.classList.contains("dragPlace")) return;
     draggingItem = event.target;
-    // if (event.target.classList.contains("dragPicture")) {
-    //   draggingItem = event.target.parentElement;
-    // } else draggingItem = event.target;
-    // находим индекс элемента, который берем в списке отрисованных. dragBox - контейнер для перетаскиваемых элементов
-    // const findIdx = [...dragBox.children].findIndex(
-    //   (el) => el === draggingItem
-    // );
 
     draggingItem.style.touchAction = "none";
     draggingItem.style.cursor = "grabbing";
@@ -282,12 +256,7 @@
 
     // ЛИММИТЫ КООРДИНАТ ОГРАНИЧИВАЮЩИЕ ВЫЛЕТ ПЕРЕТАСКИВАЕМОГО ЭЛЕМЕНТА ЗА БЛОК
     //  (ПО УМОЛЧАНИЮ interact_zadanie - РОДИТЕЛЬ ВАШЕГО БЛОКА)
-    // let limits = {
-    //   top: interakt_zadanie.offsetTop,
-    //   right: interakt_zadanie.offsetWidth + interakt_zadanie.offsetLeft,
-    //   bottom: interakt_zadanie.offsetHeight + interakt_zadanie.offsetTop,
-    //   left: interakt_zadanie.offsetLeft,
-    // };
+
     let limits = {
       top: taskWrapper.offsetTop,
       right: taskWrapper.offsetWidth + taskWrapper.offsetLeft,
@@ -296,9 +265,10 @@
     };
 
     draggingItem = draggingItem.cloneNode(true);
+
     draggingItem.style.position = "absolute";
     draggingItem.style.zIndex = 1000;
-    // document.body.appendChild(draggingItem);
+
     taskWrapper.appendChild(draggingItem);
 
     moveAt(event.pageX, event.pageY);
@@ -309,7 +279,7 @@
     }
 
     elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-    // elemBelow = taskWrapper.elementFromPoint(event.clientX, event.clientY);
+
     let clickWithoutMove = true;
     function onMouseMove(event) {
       let newLocation = {
@@ -330,9 +300,6 @@
       clickWithoutMove = false;
       moveAt(newLocation.x, newLocation.y);
 
-      // if (event.path[1] !== draggingItem) {
-      //     window.addEventListener('pointerup', moveOut);
-      // }
       if (!event.path.includes(draggingItem)) {
         window.addEventListener("pointerup", moveOut);
       }
@@ -340,12 +307,10 @@
         window.removeEventListener("pointerup", moveOut);
       }
 
-      //   draggingItem.hidden = true;
       draggingItem.style.visibility = "hidden";
       elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      //   elemBelow = taskWrapper.elementFromPoint(event.clientX, event.clientY);
+
       draggingItem.style.visibility = "visible";
-      //   draggingItem.hidden = false;
 
       if (!elemBelow) return;
     }
@@ -353,30 +318,34 @@
 
     // КОГДА ВО ВРЕМЯ ПЕРЕТАСКИВАНИЯ КУРСОР ВЫНЕСЛИ ЗА ПРЕДЕЛЫ ОКНА БРАУЗЕРА И ОТПУСТИЛИ ЗАХВАТ ЭЛЕМЕНТА
     function moveOut(e) {
-      // changeStylesAndAppend(dragBox, draggingItem);
-      // dragAppend(dragBox, draggingItem, findIdx);
-      //   document.body.removeChild(draggingItem);
-      taskWrapper.removeChild(draggingItem);
+      const elemUnderPount = document.elementFromPoint(e.clientX, e.clientY);
+
+      if (elemUnderPount !== draggingItem) {
+        draggingItem.remove();
+
+        // taskWrapper.removeChild(draggingItem);
+      }
 
       window.removeEventListener("pointerup", moveOut);
       document.removeEventListener("pointermove", onMouseMove);
     }
 
-    draggingItem.onpointerup = function () {
+    // draggingItem.onpointerup = function () {
+    taskWrapper.onpointerup = function () {
       draggingItem.style.cursor = "grab";
       if (clickWithoutMove) {
-        // document.body.removeChild(draggingItem);
-        taskWrapper.removeChild(draggingItem);
+        // taskWrapper.removeChild(draggingItem);
+        draggingItem.remove();
 
         return document.removeEventListener("pointermove", onMouseMove);
       }
       document.removeEventListener("pointermove", onMouseMove);
-      //   console.log(elemBelow);
+
       if (elemBelow.classList.contains("dropPlacePart")) {
         dropAppend(elemBelow, draggingItem);
       } else {
-        // document.body.removeChild(draggingItem);
-        taskWrapper.removeChild(draggingItem);
+        // taskWrapper.removeChild(draggingItem);
+        draggingItem.remove();
       }
     };
   }
