@@ -205,7 +205,7 @@
       controlsBox.style.backgroundColor = "lightpink";
       infoBox.textContent = "❌ Попробуй еще!";
     }
-    draggingItem = null;
+    // draggingItem = null;
   }
 
   function createDragPictureCardsMarkup(pictures) {
@@ -332,7 +332,7 @@
 
     // draggingItem.onpointerup = function () {
     taskWrapper.onpointerup = function () {
-      draggingItem.style.cursor = "grab";
+      if (draggingItem) draggingItem.style.cursor = "grab";
       if (clickWithoutMove) {
         // taskWrapper.removeChild(draggingItem);
         draggingItem.remove();
